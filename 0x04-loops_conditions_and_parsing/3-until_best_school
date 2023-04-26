@@ -1,14 +1,9 @@
 #!/usr/bin/env bash
 # print a string 10 times using until loop
 
-<<<<<<< HEAD
 counter=0
-until [ $counter == 10 ]
-=======
-i=0
 
-until ["$i" -eq 10 ];
->>>>>>> 4fb8997a246e47384d9b02806cf4877ddb6c34d4
+until [ $counter == 10 ]
 do
     echo "Best School"
     ((counter++))
