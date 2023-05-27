@@ -1,4 +1,44 @@
 https://github.com/souadhelmy/alx-system_engineering-devops/blob/master/0x09-web_infrastructure_design/1-distributed_web_infrastructure.jpg
 
 
-The three-server web infrastructure for www.foobar.com consists of a load balancer, three web servers, application servers, a MySQL database cluster, firewalls, an SSL certificate for HTTPS encryption, and monitoring clients. The load balancer distributes traffic, while the web servers host static files and the application servers process dynamic content. The database cluster ensures high availability. Firewalls enhance security, and an SSL certificate secures communication. Monitoring clients collect data for proactive issue detection. Potential issues include SSL termination at the load balancer, reliance on a single MySQL write server, and the uniformity of server components.
+First, we'll outline the components of the infrastructure:
+Load Balancer: The load balancer acts as a reverse proxy, distributing incoming network traffic across multiple servers. 
+It enhances scalability and availability by distributing the workload evenly. Additionally, the load balancer provides termination of SSL connections.
+Web Servers: We have three web servers that receive requests from the load balancer. 
+These servers host the website's static files, such as HTML, CSS, JavaScript, and images. They handle incoming HTTP/HTTPS requests and forward them to the application servers.
+Application Servers: The application servers are responsible for executing the website's codebase and generating dynamic content.
+They receive requests from the web servers, process the logic, and interact with the database to retrieve or modify data.
+Database Servers: We have a MySQL database cluster consisting of multiple servers.
+These servers replicate data between each other, providing redundancy and fault tolerance.
+Having multiple servers capable of accepting writes ensures high availability and performance.
+Firewalls: We include three firewalls to enhance the security of the infrastructure.
+Firewalls act as network security barriers, controlling incoming and outgoing traffic based on predefined rules.
+They help protect the servers from unauthorized access and potential attacks.
+SSL Certificate: An SSL certificate is added to enable secure communication over HTTPS.
+It encrypts the traffic between the users' browsers and the web servers, ensuring the confidentiality and integrity of data transmitted over the network.
+Monitoring Clients: We deploy three monitoring clients to collect data and send it to a monitoring service such as Sumo Logic or similar tools. 
+Monitoring helps track the health, performance, and availability of the infrastructure components. It enables proactive detection of issues and facilitates troubleshooting.
+
+Now, let's address the specifics of the infrastructure:
+Firewalls: We add firewalls to control and filter incoming and outgoing traffic to the servers.
+They provide an additional layer of security, helping to prevent unauthorized access, DDoS attacks, or malicious activities.
+HTTPS: Traffic is served over HTTPS to ensure secure communication between users and the website.
+HTTPS encrypts data exchanged between the browser and the server, protecting it from eavesdropping, tampering, or data theft.
+Monitoring: Monitoring is used to observe the infrastructure's performance, detect anomalies, and proactively identify issues.
+Monitoring clients collect various metrics, logs, and events from the servers and send them to a central monitoring service for analysis and alerting.
+Monitoring Data Collection: The monitoring clients are responsible for collecting data from different components, 
+including servers, applications, and databases. They may collect CPU usage, memory utilization, disk I/O, network traffic, error logs, and other relevant information.
+This data is then transmitted to the monitoring service for analysis and visualization.
+Monitoring Web Server QPS: To monitor the web server's queries per second (QPS), one can track the incoming requests per second on the web servers.
+This can be done using monitoring tools that provide metrics related to request rate,
+such as the number of HTTP/HTTPS requests received within a specific time frame.
+
+Now, let's discuss the issues with this infrastructure:
+Terminating SSL at the Load Balancer Level:-
+Terminating SSL at the load balancer level can be an issue because it adds an additional processing load on the load balancer.
+This can become a bottleneck when handling a high volume of encrypted traffic. 
+Offloading SSL termination to the web servers can distribute the workload and improve performance.
+
+Single MySQL Server Accepting Writes:-
+Having only one MySQL server capable of accepting writes poses a single point of failure.
+If that server goes down or experiences issues, write operations to the database become unavailable. Utilizing a database
