@@ -1,7 +1,5 @@
-0-simple_web_stack.jpg
 
-
-
+https://github.com/souadhelmy/alx-system_engineering-devops/blob/master/0x09-web_infrastructure_design/0-simple_web_stack.jpg
 
 imagine a user who wants to access the website hosted at www.foobar.com. When the user enters the URL in their web browser, the following steps occur:
 
