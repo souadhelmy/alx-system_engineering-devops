@@ -1,5 +1,4 @@
-https://github.com/souadhelmy/alx-system_engineering-devops/blob/master/0x09-web_infrastructure_design/1-distributed_web_infrastructure.jpg
-
+https://github.com/souadhelmy/alx-system_engineering-devops/blob/master/0x09-web_infrastructure_design/2-secured_and_monitored_web_infrastructure.jpg
 
 First, we'll outline the components of the infrastructure:
 Load Balancer: The load balancer acts as a reverse proxy, distributing incoming network traffic across multiple servers. 
@@ -38,7 +37,6 @@ Terminating SSL at the Load Balancer Level:-
 Terminating SSL at the load balancer level can be an issue because it adds an additional processing load on the load balancer.
 This can become a bottleneck when handling a high volume of encrypted traffic. 
 Offloading SSL termination to the web servers can distribute the workload and improve performance.
-
 Single MySQL Server Accepting Writes:-
 Having only one MySQL server capable of accepting writes poses a single point of failure.
 If that server goes down or experiences issues, write operations to the database become unavailable. Utilizing a database
