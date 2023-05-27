@@ -1,0 +1,37 @@
+0-simple_web_stack.jpg
+
+
+
+
+imagine a user who wants to access the website hosted at www.foobar.com. When the user enters the URL in their web browser, the following steps occur:
+
+The user's computer sends a request to the Domain Name System (DNS) server to resolve the IP address for www.foobar.com.
+The DNS server looks up the domain name foobar.com and finds a www record pointing to the server's IP address, which in this case is 8.8.8.8.
+The DNS server responds to the user's computer with the IP address 8.8.8.8.
+Now, let's discuss the components of the web infrastructure and their roles:
+
+Server: A server is a physical or virtual machine that hosts the web infrastructure. In this case, we have a single server responsible for running all the required components.
+
+Domain Name: A domain name, such as foobar.com, is a human-readable address that represents the IP address of a server. It allows users to access websites using memorable names instead of IP addresses.
+
+DNS Record: The www record in www.foobar.com is a DNS record type called a CNAME (Canonical Name). It is used to create an alias for the domain name foobar.com, specifically pointing to the server's IP address (8.8.8.8).
+
+Web Server (Nginx): The web server's role is to handle incoming HTTP requests from users and serve the appropriate responses. In this infrastructure, we use Nginx as the web server software. It listens for requests on port 80 or 443 (for HTTPS) and forwards them to the application server.
+
+Application Server: The application server is responsible for processing dynamic content and executing the application's codebase. It receives requests from the web server and generates appropriate responses. In this case, we assume there is a separate application server running alongside the web server.
+
+Application Files: The application files contain the codebase of the website or web application. These files reside on the server and are accessed by the application server to process user requests.
+
+Database (MySQL): The database is used to store and retrieve data for the website or application. In this infrastructure, we use MySQL as the database management system. The application server communicates with the database to read or modify data as required by user requests.
+
+Communication with User's Computer: When the user's computer requests the website, it sends an HTTP request over the Internet. The request travels through various network routers and switches until it reaches the server with the IP address 8.8.8.8. The server responds to the user's computer with the requested web content, such as HTML, CSS, JavaScript, or other resources.
+
+Now let's discuss the issues with this infrastructure:
+
+Single Point of Failure (SPOF): Since there is only one server, it becomes a single point of failure. If the server goes down or encounters issues, the entire website becomes unavailable.
+
+Downtime during Maintenance: Whenever maintenance is required, such as deploying new code, updating server configurations, or restarting the web server, the website experiences downtime. During this time, users cannot access the website.
+
+Limited Scalability: With only one server, the infrastructure cannot easily handle a high volume of incoming traffic. If the website experiences a sudden surge in traffic, it may become slow or unresponsive.
+
+To address these issues, we would need to introduce additional components, such as load balancers, multiple servers, and database replication, to achieve higher availability, scalability, and fault tolerance.
