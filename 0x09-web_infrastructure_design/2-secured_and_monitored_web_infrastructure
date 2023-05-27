@@ -1,0 +1,4 @@
+https://github.com/souadhelmy/alx-system_engineering-devops/blob/master/0x09-web_infrastructure_design/1-distributed_web_infrastructure.jpg
+
+
+The three-server web infrastructure for www.foobar.com consists of a load balancer, three web servers, application servers, a MySQL database cluster, firewalls, an SSL certificate for HTTPS encryption, and monitoring clients. The load balancer distributes traffic, while the web servers host static files and the application servers process dynamic content. The database cluster ensures high availability. Firewalls enhance security, and an SSL certificate secures communication. Monitoring clients collect data for proactive issue detection. Potential issues include SSL termination at the load balancer, reliance on a single MySQL write server, and the uniformity of server components.
