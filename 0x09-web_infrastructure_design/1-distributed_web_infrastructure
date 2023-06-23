@@ -1,0 +1,42 @@
+https://github.com/souadhelmy/alx-system_engineering-devops/blob/master/0x09-web_infrastructure_design/1-distributed_web_infrastructure.jpg
+
+let's address the specifics of the infrastructure:
+
+Load Balancer (HAproxy): The load balancer is added to distribute incoming traffic evenly across multiple servers.
+It helps optimize resource utilization and improves the availability and scalability of the website.
+
+Web Server (Nginx): The web server handles HTTP/HTTPS requests and serves static files for the website.
+It is responsible for handling incoming connections and serving responses.
+
+Application Server: The application server processes dynamic content and executes the codebase for the website.
+It receives requests from the web server, performs necessary logic or computations, and generates dynamic responses.
+
+Application Files: The set of application files contains the codebase for the website. 
+These files reside on the servers and are accessed by the application server to process user requests.
+
+Database (MySQL): The MySQL database stores and manages the website's data. 
+It consists of a primary-replica (master-slave) cluster to provide high availability and data redundancy.
+
+Primary Node: The primary node is responsible for handling write operations, such as inserting, 
+, or deleting data. It ensures data consistency and integrity.
+
+Replica Node: The replica nodes synchronize data from the primary node and handle read operations. 
+They provide high availability and scalability by serving read queries and acting as backups in case the primary node fails.
+
+Next, let's discuss the issues with this infrastructure:
+
+Single Point of Failure (SPOF): The infrastructure has a potential single point of failure at the load balancer.
+If the load balancer fails, it can disrupt the distribution of traffic and impact the availability of the website. 
+Implementing redundancy measures, such as adding additional load balancers in a cluster, can mitigate this issue.
+
+Security Issues: The infrastructure lacks security measures such as firewalls and HTTPS. Without firewalls,
+the servers are more vulnerable to unauthorized access or attacks. Enabling HTTPS with SSL/TLS encryption is essential to secure communication between users
+and the website, protecting sensitive data during transmission.
+
+Monitoring: The infrastructure does not include a monitoring system, which is crucial for tracking the health,
+performance, and availability of the components. Implementing a monitoring solution would allow proactive detection of issues,
+such as server failures or performance bottlenecks, and enable prompt troubleshooting and maintenance.
+
+By addressing these issues, such as adding redundancy to eliminate single points of failure, 
+implementing security measures like firewalls and HTTPS, and incorporating a monitoring system, 
+the infrastructure can be enhanced in terms of availability, security, and proactive maintenance.
