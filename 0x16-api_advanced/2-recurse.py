@@ -1,49 +1,33 @@
 #!/usr/bin/python3
-'''A module containing functions for working with the Reddit API.
-'''
+"""Function that prints top ten hot posts for a given subreddit"""
 import requests
 
 
-BASE_URL = 'https://www.reddit.com'
-'''Reddit's base API URL.
-'''
+def recurse(subreddit, hot_list=[], after=''):
+    """Gets hot posts in subreddit
+       Args:
+           subreddit (str): name of subreddit
+           hot_list (list): list of titles
+           after (str): id of next set of results
+    """
+    base_url = 'https://api.reddit.com/r/'
+    headers = {'User-Agent': 'my-app/0.0.1'}
+    response = requests.get(
+        '{}{}/hot?after={}'.format(
+            base_url,
+            subreddit, after), headers=headers, allow_redirects=False)
 
-
-def recurse(subreddit, hot_list=[], n=0, after=None):
-    '''Retrieves a list of hot posts from a given subreddit.
-    '''
-    api_headers = {
-        'Accept': 'application/json',
-        'User-Agent': ' '.join([
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-            'AppleWebKit/537.36 (KHTML, like Gecko)',
-            'Chrome/97.0.4692.71',
-            'Safari/537.36',
-            'Edg/97.0.1072.62'
-        ])
-    }
-    sort = 'hot'
-    limit = 30
-    res = requests.get(
-        '{}/r/{}/.json?sort={}&limit={}&count={}&after={}'.format(
-            BASE_URL,
-            subreddit,
-            sort,
-            limit,
-            n,
-            after if after else ''
-        ),
-        headers=api_headers,
-        allow_redirects=False
-    )
-    if res.status_code == 200:
-        data = res.json()['data']
-        posts = data['children']
-        count = len(posts)
-        hot_list.extend(list(map(lambda x: x['data']['title'], posts)))
-        if count >= limit and data['after']:
-            return recurse(subreddit, hot_list, n + count, data['after'])
-        else:
-            return hot_list if hot_list else None
+    if response.status_code != 200:
+        return None
     else:
-        return hot_list if hot_list else None
+        hot_dict = response.json()
+        if len(hot_dict['data']['children']) == 0:
+            return hot_list
+        else:
+            for d in hot_dict['data']['children']:
+                hot_list.append(d['data']['title'])
+
+            after = hot_dict['data']['after']
+            if after is None:
+                return hot_list
+            return recurse(subreddit, hot_list, after=after)
